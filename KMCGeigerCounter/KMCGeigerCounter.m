@@ -184,10 +184,13 @@ static NSTimeInterval const kNormalFrameDuration = 1.0 / kHardwareFramesPerSecon
 
 - (void)enable
 {
-    self.window = [[UIWindow alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
+  //  self.window = [[UIWindow alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
+  //  self.window.windowLevel = self.windowLevel;
+  //  self.window.userInteractionEnabled = NO;
+   self.window = [UIApplication sharedApplication].keyWindow;
+//    self.window = [[UIWindow alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
     self.window.windowLevel = self.windowLevel;
-    self.window.userInteractionEnabled = NO;
-
+    
     CGFloat const kMeterWidth = 65.0;
     CGFloat xOrigin = 0.0;
     switch (self.position) {
@@ -201,8 +204,10 @@ static NSTimeInterval const kNormalFrameDuration = 1.0 / kHardwareFramesPerSecon
             xOrigin = (CGRectGetWidth(self.window.bounds) - kMeterWidth);
             break;
     }
-    self.meterLabel = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, 0.0,
-                                                                kMeterWidth, CGRectGetHeight(self.window.bounds))];
+//     self.meterLabel = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, 0.0, kMeterWidth, CGRectGetHeight(self.window.bounds))];
+       self.meterLabel = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, 0.0, kMeterWidth, 40)];
+
+    
     self.meterLabel.font = [UIFont boldSystemFontOfSize:12.0];
     self.meterLabel.backgroundColor = [UIColor grayColor];
     self.meterLabel.textColor = [UIColor whiteColor];
